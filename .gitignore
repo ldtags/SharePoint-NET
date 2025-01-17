@@ -1,0 +1,26 @@
+# User Specific Files
+*.suo
+*.user
+*.sln.docstates
+
+
+# Build Results
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
+
+
+# Cache Files
+ipch/
+*.aps
+*.ncb
+*.opensdf
+*.sdf
+*.cachefile
+
+
+# NuGet Packages Directory
+packages/
+!packages/repositories.config
