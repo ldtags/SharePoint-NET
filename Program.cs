@@ -34,18 +34,15 @@ namespace SharePoint_NET {
             .Build();
 
             await host.StartAsync();
+            using var scope = host.Services.CreateScope();
 
-            #pragma warning disable IDE0063
-            using (var scope = host.Services.CreateScope()) {
-                // Obtain a PnP Context factory
-                var pnpContextFactory = scope.ServiceProvider.GetRequiredService<IPnPContextFactory>();
+            // Obtain a PnP Context factory
+            var pnpContextFactory = scope.ServiceProvider.GetRequiredService<IPnPContextFactory>();
 
-                // Use the PnP Context factory to get a PnPContext for the given configuration
-                using (var context = await pnpContextFactory.CreateAsync("CustomInitiative")) {
-                    await AddAnonymousSharingLinks(context, "Baseline Library");
-                }
-            }
-            #pragma warning restore IDE0063
+            // Use the PnP Context factory to get a PnPContext for the given configuration
+            using var context = await pnpContextFactory.CreateAsync("CustomInitiative");
+
+            await AddAnonymousSharingLinks(context, "Baseline Library");
 
             // Cleanup console host
             host.Dispose();
