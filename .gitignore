@@ -1,3 +1,7 @@
+# VSCode
+.vscode/
+
+
 # User Specific Files
 *.suo
 *.user
